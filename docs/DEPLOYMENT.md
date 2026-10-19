@@ -2,9 +2,9 @@
 
 ## Current demo
 
-https://label-lens-kevin-gardner.kmce2025.chatgpt.site
+https://treasurytakehomeapp.boxospam.workers.dev/
 
-The demo is configured with public access for assessment reviewers. It has no reviewer login or API-key setup. Source is independently available at https://github.com/kmce2019/treasurytakehomeapp.
+The primary demo is deployed at the Cloudflare Workers URL above and was opened successfully without authentication on October 19, 2026. It has no reviewer login or API-key setup. Source is independently available at https://github.com/kmce2019/treasurytakehomeapp.
 
 ## Any static host
 
