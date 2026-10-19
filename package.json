@@ -1,0 +1,16 @@
+{
+  "name": "label-lens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first AI-assisted alcohol label verification prototype",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:ocr": "node scripts/benchmark.mjs"
+  },
+  "dependencies": {"tesseract.js": "6.0.1", "@tesseract.js-data/eng": "1.0.0"},
+  "devDependencies": {"jsdom": "26.1.0"}
+}

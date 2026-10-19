@@ -1,0 +1,12 @@
+import {cp,mkdir,readdir,rm,copyFile} from 'node:fs/promises';
+await rm('dist',{recursive:true,force:true});
+await mkdir('dist/vendor/core',{recursive:true});
+await mkdir('dist/vendor/lang',{recursive:true});
+await cp('public','dist',{recursive:true});
+await cp('src','dist/src',{recursive:true});
+for(const name of ['tesseract.min.js','worker.min.js'])await copyFile(`node_modules/tesseract.js/dist/${name}`,`dist/vendor/${name}`);
+for(const name of await readdir('node_modules/tesseract.js-core'))if(name.endsWith('.wasm')||name.endsWith('.wasm.js'))await copyFile(`node_modules/tesseract.js-core/${name}`,`dist/vendor/core/${name}`);
+await copyFile('node_modules/@tesseract.js-data/eng/4.0.0/eng.traineddata.gz','dist/vendor/lang/eng.traineddata.gz');
+await copyFile('node_modules/tesseract.js/LICENSE.md','dist/vendor/TESSERACT-JS-LICENSE');
+await copyFile('node_modules/tesseract.js-core/LICENSE','dist/vendor/TESSERACT-CORE-LICENSE');
+console.log('Built static app in dist/. All OCR assets are local.');

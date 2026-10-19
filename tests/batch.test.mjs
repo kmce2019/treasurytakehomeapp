@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {parseManifest,validateFiles,csvCell,resultsCSV} from '../src/batch.js';
+const file={name:'label.png',size:500,type:'image/png'};
+const row={id:'1',files:['label.png'],beverage:'spirits',brand:'Test',classType:'Whiskey',abv:'40',netContents:'750 mL',producer:'Example',address:'Austin, TX',imported:false};
+test('manifest maps application to its own images',()=>{const jobs=parseManifest(JSON.stringify([row]),[file]);assert.equal(jobs[0].files[0],file);assert.equal(jobs[0].application.brand,'Test');});
+test('duplicate IDs rejected',()=>assert.throws(()=>parseManifest(JSON.stringify([row,row]),[file]),/unique/));
+test('missing/unused/duplicate filenames rejected',()=>{assert.throws(()=>parseManifest(JSON.stringify([{...row,files:['missing.png']}]),[file]),/not selected/);assert.throws(()=>parseManifest(JSON.stringify([row]),[file,{...file,name:'extra.png'}]),/missing from manifest/);assert.throws(()=>validateFiles([file,file]),/Duplicate filename/);});
+test('image reuse across records is rejected',()=>assert.throws(()=>parseManifest(JSON.stringify([row,{...row,id:'2'}]),[file]),/assigned more than once/));
+test('malformed JSON and records fail atomically',()=>{for(const bad of ['bad','{}','[null]','[]'])assert.throws(()=>parseManifest(bad,[file]));});
+test('file limits and unsupported formats rejected',()=>{assert.throws(()=>validateFiles([{...file,size:13*1024*1024}]),/12 MB/);assert.throws(()=>validateFiles([{...file,name:'a.svg',type:'image/svg+xml'}]),/use PNG/);});
+test('300 distinct applications accepted and 301 rejected',()=>{const rows=Array.from({length:300},(_,i)=>({...row,id:String(i),files:[`${i}.png`]})),files=rows.map(r=>({...file,name:r.files[0]}));assert.equal(parseManifest(JSON.stringify(rows),files).length,300);assert.throws(()=>parseManifest(JSON.stringify([...rows,{...row,id:'301'}]),files),/1–300/);});
+test('CSV escapes quotes/newlines and prevents formula injection',()=>{assert.equal(csvCell('=HYPERLINK("bad")'),'"\'=HYPERLINK(""bad"")"');assert.equal(csvCell('a\nb'),'"a\nb"');assert.ok(csvCell(' \t+1').startsWith('"\''));});
+test('failed and stopped jobs remain in export',()=>{const csv=resultsCSV([{id:'1',application:row,state:'Error',error:'Bad file'},{id:'2',application:row,state:'Stopped'}]);assert.match(csv,/Bad file/);assert.match(csv,/Stopped/);});

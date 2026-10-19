@@ -1,0 +1,322 @@
+{
+  "environment": "Node.js on development Linux container; not a browser benchmark",
+  "node": "v24.19.0",
+  "model": "Tesseract.js 6.0.1 / eng 4.0.0",
+  "initMs": 3713,
+  "results": [
+    {
+      "id": "DEMO-001",
+      "scans": [
+        {
+          "file": "old-tom-matching.png",
+          "text": "OLD TOM DISTILLERY\n\nKentucky Straight\nBourbon Whiskey\n\n45% Alc./Vol. (90 Proof)\n750 mL\n\nBottled by Old Tom Distillery\nFrankfort, Kentucky\n\nGOVERNMENT WARNING:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and may cause health problems.\n\n",
+          "confidence": 95,
+          "elapsedMs": 3737
+        }
+      ],
+      "result": {
+        "ruleVersion": "1.0.0",
+        "checks": [
+          {
+            "key": "brand",
+            "status": "match",
+            "expected": "Old Tom Distillery",
+            "observed": "OLD TOM DISTILLERY",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "classType",
+            "status": "match",
+            "expected": "Kentucky Straight Bourbon Whiskey",
+            "observed": "OLD TOM DISTILLERY Kentucky Straight Bourbon Whiskey 45% Alc./Vol. (90 Proof) 750 mL Bottled by Old Tom Distillery Frankfort, Kentucky GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "abv",
+            "expected": "45% ABV",
+            "observed": "45% Alc./Vol",
+            "status": "match",
+            "reason": "Numerically equivalent value found."
+          },
+          {
+            "key": "netContents",
+            "expected": "750 mL",
+            "observed": "750 mL",
+            "status": "match",
+            "reason": "Numerically equivalent value found."
+          },
+          {
+            "key": "producer",
+            "status": "match",
+            "expected": "Old Tom Distillery",
+            "observed": "OLD TOM DISTILLERY",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "address",
+            "status": "match",
+            "expected": "Frankfort, Kentucky",
+            "observed": "Frankfort, Kentucky",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "country",
+            "status": "na",
+            "expected": "Domestic product",
+            "observed": "Not compared",
+            "reason": "Import country-of-origin comparison not applicable to this application."
+          },
+          {
+            "key": "proof",
+            "status": "match",
+            "expected": "U.S. proof = 2 × ABV",
+            "observed": "90 Proof",
+            "reason": "U.S. proof is cross-checked when present; proof alone does not replace an ABV declaration."
+          },
+          {
+            "key": "warningHeading",
+            "status": "match",
+            "expected": "GOVERNMENT WARNING:",
+            "observed": "GOVERNMENT WARNING:",
+            "reason": "Uppercase heading and colon recognized."
+          },
+          {
+            "key": "warningBody",
+            "status": "match",
+            "expected": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": " (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "reason": "Exact wording and punctuation found; line wraps and body capitalization ignored."
+          },
+          {
+            "key": "typography",
+            "status": "review",
+            "expected": "Bold uppercase heading; nonbold body; separate continuous paragraph; readable contrast; minimum 2 mm type (physical label).",
+            "observed": "Agent confirmation needed",
+            "reason": "OCR cannot reliably verify font weight or physical print size. Inspect the artwork and dimensions."
+          },
+          {
+            "key": "quality",
+            "status": "match",
+            "expected": "Readable text",
+            "observed": "95 / 100 OCR confidence",
+            "reason": "Confidence is an OCR heuristic, not a probability of correctness. Inspect small print, glare, and curved text."
+          }
+        ],
+        "status": "Needs review",
+        "issues": 0,
+        "reviews": 1,
+        "text": "OLD TOM DISTILLERY\n\nKentucky Straight\nBourbon Whiskey\n\n45% Alc./Vol. (90 Proof)\n750 mL\n\nBottled by Old Tom Distillery\nFrankfort, Kentucky\n\nGOVERNMENT WARNING:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and may cause health problems.\n\n",
+        "confidence": 95
+      }
+    },
+    {
+      "id": "DEMO-002",
+      "scans": [
+        {
+          "file": "old-tom-discrepancies.png",
+          "text": "OLD TOM DISTILLERY\n\nKentucky Straight\nBourbon Whiskey\n\n40% Alc./Vol. (80 Proof)\n700 mL\n\nBottled by Old Tom Distillery\nFrankfort, Kentucky\n\nGovernment Warning:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and can cause health problems.\n\n",
+          "confidence": 95,
+          "elapsedMs": 3032
+        }
+      ],
+      "result": {
+        "ruleVersion": "1.0.0",
+        "checks": [
+          {
+            "key": "brand",
+            "status": "match",
+            "expected": "Old Tom Distillery",
+            "observed": "OLD TOM DISTILLERY",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "classType",
+            "status": "match",
+            "expected": "Kentucky Straight Bourbon Whiskey",
+            "observed": "OLD TOM DISTILLERY Kentucky Straight Bourbon Whiskey 40% Alc./Vol. (80 Proof) 700 mL Bottled by Old Tom Distillery Frankfort, Kentucky Government Warning: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and can cause health problems.",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "abv",
+            "expected": "45% ABV",
+            "observed": "40% Alc./Vol",
+            "status": "issue",
+            "reason": "Detected values differ from the application or conflict with each other."
+          },
+          {
+            "key": "netContents",
+            "expected": "750 mL",
+            "observed": "700 mL",
+            "status": "issue",
+            "reason": "Detected values differ from the application or conflict with each other."
+          },
+          {
+            "key": "producer",
+            "status": "match",
+            "expected": "Old Tom Distillery",
+            "observed": "OLD TOM DISTILLERY",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "address",
+            "status": "match",
+            "expected": "Frankfort, Kentucky",
+            "observed": "Frankfort, Kentucky",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "country",
+            "status": "na",
+            "expected": "Domestic product",
+            "observed": "Not compared",
+            "reason": "Import country-of-origin comparison not applicable to this application."
+          },
+          {
+            "key": "proof",
+            "status": "match",
+            "expected": "U.S. proof = 2 × ABV",
+            "observed": "80 Proof",
+            "reason": "U.S. proof is cross-checked when present; proof alone does not replace an ABV declaration."
+          },
+          {
+            "key": "warningHeading",
+            "status": "issue",
+            "expected": "GOVERNMENT WARNING:",
+            "observed": "Government Warning:",
+            "reason": "Heading must use uppercase letters and a colon; duplicate headings require review."
+          },
+          {
+            "key": "warningBody",
+            "status": "issue",
+            "expected": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": " (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and can cause health problems.",
+            "reason": "Warning wording is missing, altered, or uncertain in OCR. Compare the image with the required statement."
+          },
+          {
+            "key": "typography",
+            "status": "review",
+            "expected": "Bold uppercase heading; nonbold body; separate continuous paragraph; readable contrast; minimum 2 mm type (physical label).",
+            "observed": "Agent confirmation needed",
+            "reason": "OCR cannot reliably verify font weight or physical print size. Inspect the artwork and dimensions."
+          },
+          {
+            "key": "quality",
+            "status": "match",
+            "expected": "Readable text",
+            "observed": "95 / 100 OCR confidence",
+            "reason": "Confidence is an OCR heuristic, not a probability of correctness. Inspect small print, glare, and curved text."
+          }
+        ],
+        "status": "Discrepancies found",
+        "issues": 4,
+        "reviews": 1,
+        "text": "OLD TOM DISTILLERY\n\nKentucky Straight\nBourbon Whiskey\n\n40% Alc./Vol. (80 Proof)\n700 mL\n\nBottled by Old Tom Distillery\nFrankfort, Kentucky\n\nGovernment Warning:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and can cause health problems.\n\n",
+        "confidence": 95
+      }
+    },
+    {
+      "id": "DEMO-003",
+      "scans": [
+        {
+          "file": "maison-riviere-front.png",
+          "text": "MAISON RIVIERE\n\nRed Wine\n\n13.5% Alc./Vol.\n0.75 L\n\nProduct of France\n\n",
+          "confidence": 82,
+          "elapsedMs": 954
+        },
+        {
+          "file": "maison-riviere-back.png",
+          "text": "MAISON RIVIERE\n\nProduced and bottled by Maison Riviere\n\nBordeaux, France\n\nProduct of France\n\nGOVERNMENT WARNING:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and may cause health problems.\n\n",
+          "confidence": 95,
+          "elapsedMs": 1291
+        }
+      ],
+      "result": {
+        "ruleVersion": "1.0.0",
+        "checks": [
+          {
+            "key": "brand",
+            "status": "match",
+            "expected": "Maison Riviere",
+            "observed": "MAISON RIVIERE",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "classType",
+            "status": "match",
+            "expected": "Red Wine",
+            "observed": "Red Wine",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "abv",
+            "expected": "13.5% ABV",
+            "observed": "13.5% Alc./Vol",
+            "status": "match",
+            "reason": "Numerically equivalent value found."
+          },
+          {
+            "key": "netContents",
+            "expected": "750 mL",
+            "observed": "0.75 L",
+            "status": "match",
+            "reason": "Numerically equivalent value found."
+          },
+          {
+            "key": "producer",
+            "status": "match",
+            "expected": "Maison Riviere",
+            "observed": "MAISON RIVIERE",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "address",
+            "status": "match",
+            "expected": "Bordeaux, France",
+            "observed": "Bordeaux, France",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "country",
+            "status": "match",
+            "expected": "France",
+            "observed": "Product of France",
+            "reason": "Text found; case, whitespace, apostrophe style and punctuation normalized."
+          },
+          {
+            "key": "warningHeading",
+            "status": "match",
+            "expected": "GOVERNMENT WARNING:",
+            "observed": "GOVERNMENT WARNING:",
+            "reason": "Uppercase heading and colon recognized."
+          },
+          {
+            "key": "warningBody",
+            "status": "match",
+            "expected": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": " (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "reason": "Exact wording and punctuation found; line wraps and body capitalization ignored."
+          },
+          {
+            "key": "typography",
+            "status": "review",
+            "expected": "Bold uppercase heading; nonbold body; separate continuous paragraph; readable contrast; minimum 2 mm type (physical label).",
+            "observed": "Agent confirmation needed",
+            "reason": "OCR cannot reliably verify font weight or physical print size. Inspect the artwork and dimensions."
+          },
+          {
+            "key": "quality",
+            "status": "match",
+            "expected": "Readable text",
+            "observed": "82 / 100 OCR confidence",
+            "reason": "Confidence is an OCR heuristic, not a probability of correctness. Inspect small print, glare, and curved text."
+          }
+        ],
+        "status": "Needs review",
+        "issues": 0,
+        "reviews": 1,
+        "text": "MAISON RIVIERE\n\nRed Wine\n\n13.5% Alc./Vol.\n0.75 L\n\nProduct of France\n\n\nMAISON RIVIERE\n\nProduced and bottled by Maison Riviere\n\nBordeaux, France\n\nProduct of France\n\nGOVERNMENT WARNING:\n\n(1) According to the Surgeon General, women should not drink alcoholic\nbeverages during pregnancy because of the risk of birth defects. (2)\nConsumption of alcoholic beverages impairs your ability to drive a car or\noperate machinery, and may cause health problems.\n\n",
+        "confidence": 82
+      }
+    }
+  ]
+}

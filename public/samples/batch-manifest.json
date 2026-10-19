@@ -1,0 +1,51 @@
+[
+  {
+    "id": "DEMO-001",
+    "sample": "clean",
+    "files": [
+      "old-tom-matching.png"
+    ],
+    "beverage": "spirits",
+    "brand": "Old Tom Distillery",
+    "classType": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45",
+    "netContents": "750 mL",
+    "producer": "Old Tom Distillery",
+    "address": "Frankfort, Kentucky",
+    "imported": false,
+    "country": ""
+  },
+  {
+    "id": "DEMO-002",
+    "sample": "mismatch",
+    "files": [
+      "old-tom-discrepancies.png"
+    ],
+    "beverage": "spirits",
+    "brand": "Old Tom Distillery",
+    "classType": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45",
+    "netContents": "750 mL",
+    "producer": "Old Tom Distillery",
+    "address": "Frankfort, Kentucky",
+    "imported": false,
+    "country": ""
+  },
+  {
+    "id": "DEMO-003",
+    "sample": "import",
+    "files": [
+      "maison-riviere-front.png",
+      "maison-riviere-back.png"
+    ],
+    "beverage": "wine",
+    "brand": "Maison Riviere",
+    "classType": "Red Wine",
+    "abv": "13.5",
+    "netContents": "750 mL",
+    "producer": "Maison Riviere",
+    "address": "Bordeaux, France",
+    "imported": true,
+    "country": "France"
+  }
+]
