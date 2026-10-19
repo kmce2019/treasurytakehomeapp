@@ -8,9 +8,11 @@ DOM tests use jsdom and a stub recognition response to test UI state/event wirin
 
 The synthetic test labels are easy, high-contrast fixtures. They are not a representative accuracy dataset. The 300-application test validates mapping and limits, not a full OCR throughput run.
 
-## Manual browser checks — not yet performed in the build environment
+## Public deployment browser smoke test — October 19, 2026
 
-Browser-control tooling was unavailable; no browser visual or end-to-end QA is claimed. Before submitting, use the public deployment to check:
+Tested in desktop Chrome at https://treasurytakehomeapp.boxospam.workers.dev/ without login. The matching sample completed real OCR with all automated fields matched and formatting left for human review (4.93 s displayed). The three-application sample batch completed: matching label 1.87 s, altered label 1.40 s, and two-panel imported wine 2.39 s. The altered label showed exactly the expected four discrepancies (ABV, volume, warning heading case, warning wording); the wine record combined front/back evidence and matched country of origin. The desktop results layout was visually inspected. These are one-session observations, not benchmark guarantees.
+
+This smoke test does not cover arbitrary uploads, full-size batches, cancellation, export file contents, all keyboard/accessibility behavior, mobile layout, other browsers, or network-traffic auditing. The following checklist remains useful for the untested paths and regression checks:
 
 1. In a signed-out Chrome/Edge or Safari window, the application loads with no account prompt.
 2. Matching sample: actual OCR returns matches except the outstanding manual typography check.
