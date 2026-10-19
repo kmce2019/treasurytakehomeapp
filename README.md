@@ -4,7 +4,7 @@
 
 A standalone Treasury take-home assessment prototype by Kevin Gardner.
 
-- **Live application:** https://label-lens-kevin-gardner.kmce2025.chatgpt.site
+- **Live application:** https://treasurytakehomeapp.boxospam.workers.dev/
 - **Source:** https://github.com/kmce2019/treasurytakehomeapp
 - **Assessment brief:** https://github.com/treasurytakehome-rgb/instructions
 
@@ -118,7 +118,7 @@ The production application deliberately uses plain browser JavaScript and semant
 
 The initial Linux/Node integration run measured approximately **3.7 s** for the matching spirits label, **3.0 s** for the altered label, and **2.2 s** for the two-panel wine application. Worker/model initialization was approximately **3.7 s** separately. Raw results: [docs/ocr-benchmark.json](docs/ocr-benchmark.json). These are small synthetic-fixture measurements, not a browser SLA or real-world accuracy benchmark. First use, slow devices, network/model loading and difficult artwork can exceed the five-second target.
 
-Browser visual/interaction QA was unavailable in the build environment. DOM workflow tests and real Node OCR integration tests are included; [the manual browser checklist](docs/TESTING.md) records the remaining verification. No claim is made that a full 300-image OCR run, all browsers, or difficult bottle photographs were tested.
+A subsequent desktop Chrome browser check on the public Cloudflare deployment (October 19, 2026) verified unauthenticated access, actual single-label OCR, and the three-application sample batch. The first single-label verification displayed 4.93 s; warm batch runs displayed 1.87 s (matching), 1.40 s (altered), and 2.39 s (two-panel wine). Expected field outcomes were observed and the desktop results layout was visually inspected. These are individual observations, not a performance guarantee. [The browser checklist](docs/TESTING.md) records remaining verification. A full 300-image OCR run, all browsers, real-world uploads, exports and difficult bottle photographs have not been browser-tested.
 
 ## Assumptions and limits
 
